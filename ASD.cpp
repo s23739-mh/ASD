@@ -207,43 +207,31 @@ int main()
 	}
 	std::vector<int> numbers = retrieveArray(path);
 
-	std::cout << "1-Heapsort\n2-MergeSort\n3-Quicksort\n4-Bubblesort";
+	std::cout << "1-Heapsort\n2-MergeSort\n3-Quicksort\n4-Bubblesort\nChoice:";
 	std::cin >> choice;
 
+	clock_t begin = clock();
 	switch (choice) {
 	case 1:
-		clock_t begin = clock();
 		heapSort(numbers, numbers.size());
-		clock_t finish = clock();
-		saveFinal("heapSort.txt", numbers);
-		std::cout << "Time:" << double(finish - begin) / CLOCKS_PER_SEC;
 		break;
 	case 2:
-		clock_t begin = clock();
 		lomutoQS(numbers, 0, numbers.size() - 1);
-		clock_t finish = clock();
-		saveFinal("LomutoQuickSort.txt", numbers);
-		std::cout << "Time:" << double(finish - begin) / CLOCKS_PER_SEC;
 		break;
 	case 3:
-		clock_t begin = clock();
+		
 		mergeSort(numbers, 0, numbers.size() - 1);
-		clock_t finish = clock();
-		saveFinal("MergeSort.txt", numbers);
-		std::cout << "Time:" << double(finish - begin) / CLOCKS_PER_SEC;
 		break;
 	case 4:
-		clock_t begin = clock();
+		
 		improvedBubbleSort(numbers);
-		clock_t finish = clock();
-		saveFinal("ImprovedBubbleSort.txt", numbers);
-		std::cout << "Time:" << double(finish - begin) / CLOCKS_PER_SEC;
 		break;
 	default:
 		throw std::invalid_argument("Zly wybor");
 		break;
 	}
-
-
+	clock_t finish = clock();
+	saveFinal("SortedNumbers.txt", numbers);
+	std::cout << "Time:" << double(finish - begin) / CLOCKS_PER_SEC;
 	return 0;
 }
